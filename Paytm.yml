@@ -1,0 +1,8 @@
+jobs:
+- job: 'Test'
+  pool:
+    vmImage: 'ubuntu-latest' # other options: 'macOS-latest', 'windows-latest'
+  strategy:
+    matrix:
+      Python39:
+        python.version: '3.9'
