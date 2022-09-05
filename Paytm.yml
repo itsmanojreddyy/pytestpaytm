@@ -16,6 +16,7 @@ jobs:
    - script: python -m pip install --upgrade pytest
    - script: python -m pip install --upgrade selenium
    - script: python -m pip install --upgrade allure-pytest
+   - script: python -m pip install --upgrade xlrd
    - script: cd tests
    - script: python -m pytest -m security -v -s --alluredir=allure-results/  tests/PaytmSignIn.py
    
