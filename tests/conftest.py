@@ -13,7 +13,7 @@ from pages.PaytmSignInPage import PaytmSignInPage
 def setup(request):
     global Web_driver
     print("initiating chrome driver")
-    Web_driver = webdriver.Chrome(DRIVERS_PATH+"\\chromedriver.exe")  # if not added in PATH
+    Web_driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
     Web_driver.maximize_window()
     Web_driver.get("https://paytm.com/");
     request.cls.driver = Web_driver
