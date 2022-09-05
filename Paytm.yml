@@ -6,3 +6,5 @@ jobs:
     matrix:
       Python39:
         python.version: '3.9'
+- script: python -m pip install --upgrade pip setuptools wheel
+  displayName: 'Install tools'
