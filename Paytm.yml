@@ -22,6 +22,6 @@ jobs:
    - task: PythonScript@0
      inputs:
       scriptSource: 'inline'
-      script: 'pytest -m security -v -s --alluredir=allure-results/  tests/PaytmSignIn.py'
+      script: 'pytest -m --alluredir=allure-results/  tests/PaytmSignIn.py'
 
    
