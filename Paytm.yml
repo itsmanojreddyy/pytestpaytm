@@ -19,9 +19,6 @@ jobs:
    - script: python -m pip install --upgrade allure-pytest
    - script: python -m pip install --upgrade xlrd
    - script: python -m pip install --upgrade webdriver_manager
-   - task: PythonScript@0
-     inputs:
-      scriptSource: 'inline'
-      script: 'python tests/PaytmSignIn.py'
+   - script: python tests/PaytmSignIn.py
 
    
