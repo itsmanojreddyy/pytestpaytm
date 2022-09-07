@@ -3,21 +3,17 @@ from pathlib import Path
 import pytest
 from _pytest.fixtures import fixture
 from selenium import webdriver
-from selenium.webdriver.chromium.service import ChromiumService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.utils import ChromeType
-
-from globals.dir_global import DRIVERS_PATH
 from pages.HomePage import HomePage
 from pages.PaytmSignInPage import PaytmSignInPage
 
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture(scope='class')
 def setup(request):
     global Web_driver
     print("initiating chrome driver")
-    Web_driver = webdriver.Chrome(
-        service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))  # if not added in PATH
+    Web_driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))  # if not added in PATH
     Web_driver.maximize_window()
     Web_driver.get("https://paytm.com/");
     request.cls.driver = Web_driver
