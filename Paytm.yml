@@ -21,7 +21,6 @@ jobs:
    - script: python -m pip install --upgrade webdriver_manager
    - script: |
       python -m pytest tests/PaytmSignIn.py
-      displayName: <s>'pytest'</s>
  
 
    
