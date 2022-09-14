@@ -14,6 +14,8 @@ def setup(request):
     global Web_driver
     print("initiating chrome driver")
     chrome_options = Options()
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--headless')
     # optional
     chrome_options.add_argument('--no-sandbox')
