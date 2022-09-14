@@ -20,7 +20,8 @@ jobs:
    - script: python -m pip install --upgrade xlrd
    - script: python -m pip install --upgrade webdriver_manager
    - script: |
-      python -m pytest tests/PaytmSignIn.py --disable-warnings
+      python -m pytest -m security -v -s --alluredir=allure-results/  tests/PaytmSignIn.py --disable-warnings
+
  
 
    
