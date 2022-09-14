@@ -1,6 +1,7 @@
 jobs:
 
 
+
 - job: 'Test'
   pool:
     vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
@@ -26,7 +27,7 @@ jobs:
    - task: AllureGenerate@1
      inputs:
        resultsDir: 'allure-results'
-       targetDir: 'allure-results/$(Build.BuildNumber)'
+       targetDir: 'allure-report/$(Build.BuildNumber)'
  
 
    
