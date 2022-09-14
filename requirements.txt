@@ -4,4 +4,3 @@ selenium
 allure-pytest
 xlrd
 webdriver_manager
-pip setuptools wheel
