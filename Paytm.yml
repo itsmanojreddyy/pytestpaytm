@@ -23,4 +23,4 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
-    scriptPath: 'Sample1/s2.py'
+    scriptPath: 'tests/PaytmSignIn.py'
