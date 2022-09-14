@@ -18,7 +18,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-    displayName: 'Install dependencies'
+  displayName: 'Install dependencies'
   
 - task: PowerShell@2
   displayName: "Set configuration"
@@ -44,4 +44,4 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
-    scriptPath: 'tests/PaytmSignIn.py'
+    scriptPath: 'Sample1/s2.py'
