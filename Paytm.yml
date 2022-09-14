@@ -1,26 +1,47 @@
-jobs:
 
-- job: 'Test'
-  pool:
-    vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
-  strategy:
-    matrix:
-      Python39:
-        python.version: '3.9'
-  steps:
-   - task: UsePythonVersion@0
-     displayName: 'Use Python $(python.version)'
-     inputs:
-       versionSpec: '$(python.version)'
-       
-   - script: python -m pip install --upgrade pip setuptools wheel
-   - script: python -m pip install --upgrade pytest
-   - script: python -m pip install --upgrade selenium
-   - script: python -m pip install --upgrade allure-pytest
-   - script: python -m pip install --upgrade xlrd
-   - script: python -m pip install --upgrade webdriver_manager
-   - script: |
-      python -m pytest tests/PaytmSignIn.py --disable-warnings
- 
+trigger:
+- main
 
-   
+pool:
+  vmImage: ubuntu-latest
+strategy:
+  matrix:
+    Python39:
+      python.version: '3.9'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    displayName: 'Install dependencies'
+  
+- task: PowerShell@2
+  displayName: "Set configuration"
+  inputs:
+    targetType: "inline"
+    script: |
+      #read config
+      $config = Get-Content (Get-Item .\config.json) -Raw -Encoding UTF8 | ConvertFrom-Json
+      #set the credentials
+      $config.username = "$(USERNAME)" #assuming that you already have it
+      $config.password = "$(PASSWORD)" #assuming that you already have it
+      #update the file
+      $config | ConvertTo-Json | Set-Content .\config.json
+- task: PowerShell@2
+  displayName: "show configuration"
+  inputs:
+    targetType: "inline"
+    script: |
+      #debug
+      cat config.json
+  
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: 'tests/PaytmSignIn.py'
