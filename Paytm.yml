@@ -1,7 +1,5 @@
 jobs:
 
-
-
 - job: 'Test'
   pool:
     vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
@@ -28,6 +26,10 @@ jobs:
      inputs:
        resultsDir: 'allure-results'
        targetDir: 'allure-report/$(Build.BuildNumber)'
+   - task: PublishTestResults@2
+     inputs:
+       testResultsFormat: 'XUnit'
+       testResultsFiles: '**/TEST-*.xml'
  
 
    
