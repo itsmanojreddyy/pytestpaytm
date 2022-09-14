@@ -20,6 +20,8 @@ jobs:
    - script: python -m pip install --upgrade xlrd
    - script: python -m pip install --upgrade webdriver_manager
    - script: |
+      cd..
+   - script: |
       python -m pytest tests/PaytmSignIn.py --disable-warnings
  
 
