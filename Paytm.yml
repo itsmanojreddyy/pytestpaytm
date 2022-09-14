@@ -21,18 +21,6 @@ steps:
   displayName: 'Install dependencies'
   
 - task: PowerShell@2
-  displayName: "Set configuration"
-  inputs:
-    targetType: "inline"
-    script: |
-      #read config
-      $config = Get-Content (Get-Item .\config.json) -Raw -Encoding UTF8 | ConvertFrom-Json
-      #set the credentials
-      $config.username = "$(USERNAME)" #assuming that you already have it
-      $config.password = "$(PASSWORD)" #assuming that you already have it
-      #update the file
-      $config | ConvertTo-Json | Set-Content .\config.json
-- task: PowerShell@2
   displayName: "show configuration"
   inputs:
     targetType: "inline"
