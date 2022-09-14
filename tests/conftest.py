@@ -14,7 +14,7 @@ def setup(request):
     global Web_driver
     print("initiating chrome driver")
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--headless')
     # optional
     chrome_options.add_argument('--no-sandbox')
     # optional
