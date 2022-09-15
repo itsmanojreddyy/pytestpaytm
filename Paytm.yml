@@ -1,6 +1,5 @@
 jobs:
 
-
 - job: 'Test'
   pool:
     vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
@@ -26,3 +25,6 @@ jobs:
      inputs:
        testResultsFormat: 'JUnit'
        testResultsFiles: '**/TEST-*.xml'   
+   - task: CmdLine@2
+     inputs:
+       script: 'allure serve allure-results'
