@@ -1,5 +1,6 @@
 jobs:
 
+
 - job: 'Test'
   pool:
     vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
@@ -21,4 +22,7 @@ jobs:
    - script: python -m pip install --upgrade webdriver_manager
    - script: |
       python -m pytest -m security -v -s --alluredir=allure-results/  tests/PaytmSignIn.py --disable-warnings
-   
+   - task: AllureGenerate@1
+     inputs:
+       resultsDir: 'allure-results/'
+       targetDir: 'allure-report/$(Build.BuildNumber)'
