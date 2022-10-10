@@ -29,6 +29,6 @@ jobs:
        resultsDir: 'allure-results/'
        targetDir: 'allure-report/$(Build.BuildNumber)'
   #  - script: docker-compose up allure
-   - script:  docker pull databricksdocs/pytest
+   - script:  docker pull docker/getting-started
      workingDirectory: $(Build.SourcesDirectory)/
      displayName: 'Docker Pull'
