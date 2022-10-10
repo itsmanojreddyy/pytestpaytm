@@ -30,5 +30,5 @@ jobs:
        targetDir: 'allure-report/$(Build.BuildNumber)'
   #  - script: docker-compose up allure
    - script:  docker pull "frankescobar/allure-docker-service"
-     workingDirectory: $(Build.SourcesDirectory)/front-end/myAppFront/
+     workingDirectory: $(Build.SourcesDirectory)/
      displayName: 'Docker Pull'
