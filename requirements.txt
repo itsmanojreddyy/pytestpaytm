@@ -1,0 +1,6 @@
+requests==2.19.1
+pytest
+selenium
+allure-pytest
+xlrd
+webdriver_manager

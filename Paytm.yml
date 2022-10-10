@@ -1,0 +1,34 @@
+jobs:
+
+
+- job: 'Test'
+  pool:
+    vmImage: 'windows-latest' # other options: 'macOS-latest', 'ubuntu-latest'
+  # pool: 
+  #   name: Self
+  strategy:
+    matrix:
+      Python39:
+        python.version: '3.9'
+  steps:
+   - task: UsePythonVersion@0
+     displayName: 'Use Python $(python.version)'
+     inputs:
+       versionSpec: '$(python.version)'
+       
+   - script: python -m pip install --upgrade pip setuptools wheel
+   - script: python -m pip install --upgrade pytest
+   - script: python -m pip install --upgrade selenium
+   - script: python -m pip install --upgrade allure-pytest
+   - script: python -m pip install --upgrade xlrd
+   - script: python -m pip install --upgrade webdriver_manager
+   - script: |
+      python -m pytest -m security -v -s --alluredir=allure-results/  tests/PaytmSignIn.py --disable-warnings
+   - task: AllureGenerate@1
+     inputs:
+       resultsDir: 'allure-results/'
+       targetDir: 'allure-report/$(Build.BuildNumber)'
+  #  - script: docker-compose up allure
+   - script:  docker pull docker/getting-started
+     workingDirectory: $(Build.SourcesDirectory)/
+     displayName: 'Docker Pull'
